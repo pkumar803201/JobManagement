@@ -1,0 +1,101 @@
+<mat-toolbar color="primary">
+
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>supervised_user_circle</mat-icon>
+  </button>
+
+  <span>My App</span>
+
+  <span class="example-spacer"></span>
+
+
+  <button mat-raised-button color="warn" routerLink="add-job" >Create New Job</button>
+</mat-toolbar>
+
+
+<mat-drawer-container class="example-container" autosize>
+
+
+  <div class="example-sidenav-content" >
+
+     <div class="container" >
+      <div style="margin-top:10px;">
+
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Job" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+
+            <!-- Job Name Column -->
+            <ng-container matColumnDef="jobName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.jobName}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="scheduleType">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Frequency </th>
+              <td mat-cell *matCellDef="let row"> {{row.scheduleType}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="scheduleDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Run </th>
+              <td mat-cell *matCellDef="let row"> {{row.scheduleDate | date:'MM-dd-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Status </th>
+              <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+            </ng-container>
+
+             <ng-container matColumnDef="Date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Next Run </th>
+              <td mat-cell *matCellDef="let row"> {{currentDate| date:'MM-dd-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="creator">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
+              <td mat-cell *matCellDef="let row"> {{row.creator }} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="action" >
+              <th mat-header-cell *matHeaderCellDef mat-sort-header > Action </th>
+              <td mat-cell *matCellDef="let row">
+
+
+              <button mat-icon-button (click)="editJob(row)"  color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button  (click)="deleteJob(row.jobId)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</mat-drawer-container>

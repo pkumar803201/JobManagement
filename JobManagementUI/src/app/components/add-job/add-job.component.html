@@ -1,0 +1,96 @@
+
+<div class="container">
+
+  <form [formGroup]="jobForm" (ngSubmit)="addJob()">
+    <br>
+  <button mat-stroked-button color="accent">Report</button> |
+<button mat-stroked-button color="accent" routerLink="">Job List</button>
+<h3>Job Configration</h3><hr>
+
+    <div class="input-group mb-3">
+  <span class="input-group-text">Job Name* :</span>
+  <input type="text" class="form-control" formControlName="jobName" required>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="input-group-text" >Creator* :</span>
+  <!-- <input type="email"  class="form-control" id="email" value="prince.h.kumar@capgemini.com" formControlName="creator" > -->
+  <span class="input-group-text">prince.h.kumar@capgemini.com</span>
+</div>
+<span style="color: red; font-size: medium;" *ngIf="jobName && jobName.invalid  && jobName.touched">This input field is not vailid</span><br>
+
+<div class="input-group ">
+  <span class="input-group-text">Pdf Name* :</span>
+  <input type="text" class="form-control" formControlName="pdfName" required>
+</div>
+<span style="color: red; font-size: medium;" *ngIf="pdfName && pdfName.invalid  && pdfName.touched">This input field is not vailid</span><br>
+
+<br>
+
+<div class="input-group ">
+  <span class="input-group-text">Url* :</span>
+  <input type="text" class="form-control" formControlName="url">
+</div>
+<span style="color: red; font-size: medium;" *ngIf="url && url.invalid  && url.touched">This input field is not vailid</span><br>
+
+<br>
+
+<h3>Email Details</h3><hr>
+<div class="input-group ">
+  <span class="input-group-text">From Email* :</span>
+  <input type="text" class="form-control" formControlName="FromEmail" required>
+</div>
+<span style="color: red; font-size: medium;" *ngIf="FromEmail && FromEmail.invalid  && FromEmail.touched">This email is not vailid</span><br>
+
+<br>
+<div class="input-group ">
+  <span class="input-group-text">To Recipient* :</span>
+  <input type="text" class="form-control" formControlName="recipient">
+
+</div>
+<span style="color: red; font-size: medium;" *ngIf="recipient && recipient.invalid  && recipient.touched">This email is not vailid</span><br>
+
+<br>
+<div class="input-group ">
+  <span class="input-group-text">Email Subject* :</span>
+  <input type="text" class="form-control" formControlName="subject">
+</div>
+<span style="color: red; font-size: medium;" *ngIf="subject && subject.invalid  && subject.touched">This input field is not vailid</span><br>
+
+<br>
+<div class="input-group ">
+  <span class="input-group-text" >Email Body* :</span>
+  <textarea class="form-control" formControlName="body"></textarea>
+</div>
+<span style="color: red; font-size: medium;" *ngIf="body && body.invalid  && body.touched">This input field is not vailid</span><br>
+
+<br>
+<h3>Schedule Details</h3><hr><hr>
+ <label>Schedule* : </label> &nbsp;&nbsp;
+  <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio"  id="inlineRadio1" value="Daily" formControlName="scheduleType">
+  <label class="form-check-label" for="inlineRadio1">Daily</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio"  id="inlineRadio2" value="Weekly" formControlName="scheduleType" >
+  <label class="form-check-label" for="inlineRadio2">Weekly</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio"  id="inlineRadio2" value="Monthly" formControlName="scheduleType">
+  <label class="form-check-label" for="inlineRadio2">Monthly</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="inlineRadio2" value="Manual" formControlName="scheduleType">
+  <label class="form-check-label" for="inlineRadio2">Manual</label>
+</div><br>
+<span style="color: red; font-size: medium;" *ngIf="scheduleType && scheduleType.invalid  && scheduleType.touched">This field is not selected</span><br>
+
+<br><br>
+
+
+<button type="submit"  [disabled]="jobForm.invalid" class="btn btn-success">Submit</button>&nbsp;&nbsp;
+<button  mat-raised-button color="warn">Cancel</button><br>
+</form>
+
+</div>
+
+
